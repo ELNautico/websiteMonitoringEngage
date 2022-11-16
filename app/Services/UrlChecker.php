@@ -13,6 +13,9 @@ class UrlChecker{
 
         // Check how long it takes to check the URL
         logger('(UrlChecker) TotalTime: ' . $this->getTotalTime($startTime));
+        DB::table('urls')
+            ->where('url', $url->url)
+            ->update(['requestTime' => $this->getTotalTime($startTime)]);
 
         if($url->active = 0){
             $this->resetActiveStatus($url->url);

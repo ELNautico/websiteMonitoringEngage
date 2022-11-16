@@ -10,7 +10,7 @@ use Illuminate\Validation\Rule;
 
 class HomeController
 {
-    public function index(UrlChecker $urlChecker)
+    public function index()
     {
         return view('index', [
             'urls' => Url::all(),

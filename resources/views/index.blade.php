@@ -50,7 +50,7 @@
                     Last Checked
                 </th>
                 <th scope="col" class="py-3 px-6">
-                    Test
+                    Request-Time
                 </th>
                 <th scope="col" class="py-3 px-6">
                     Active
@@ -69,7 +69,7 @@
                         {{ $url->updated_at->diffForHumans() }}
                     </td>
                     <td class="py-4 px-6">
-                        {{ $url->url }}
+                        {{ $url->requestTime }} sec
                     </td>
                     <td class="py-4 px-6">
                         @if($url->active === 1)
@@ -87,7 +87,7 @@
                             @csrf
                             @method('DELETE')
                             <button
-                                class="text-red-300 focus:ring-4 font-medium text-xs py-1 "
+                                class="text-red-400 focus:ring-4 font-medium text-xs py-1 "
                                 type="submit"
                                 onclick="return confirm('Are you sure that you want to delete {{ $url->url }}?')"
                             >
@@ -97,7 +97,7 @@
                     </td>
                     <td class="py-4">
                             <button
-                                class="text-green-300 focus:ring-4 font-medium text-xs py-1 mr-2 "
+                                class="text-green-400 focus:ring-4 font-medium text-xs py-1 mr-2 "
                             >
                                 <a href="{{ route('url.update', $url->id) }}">Refresh</a>
                             </button>

@@ -16,6 +16,7 @@ return new class extends Migration
         Schema::create('urls', function (Blueprint $table) {
             $table->id();
             $table->string('url');
+            $table->decimal('requestTime')->default(0);
             $table->boolean('active')->default(true);
             $table->timestamps();
         });
