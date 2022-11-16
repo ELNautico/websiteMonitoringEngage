@@ -20,22 +20,3 @@ Route::post('/url', [HomeController::class, 'store']);
 Route::get('/url', [HomeController::class, 'updateAll'])->name('url.updateAll');
 Route::get('/url/{url}', [HomeController::class, 'update'])->name('url.update');
 Route::delete('/url/{id}', [HomeController::class, 'destroy'])->name('url.delete');
-
-
-
-
-
-
-
-
-
-
-
-
-Route::get('/test', function () {
-    $urls = Url::all();
-    $urls->each(function($url){
-        //event(new CheckSite($url->url));
-        event(new CheckSite($url));
-    });
-});

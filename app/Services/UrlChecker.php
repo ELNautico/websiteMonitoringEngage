@@ -12,7 +12,6 @@ class UrlChecker{
         $response = Http::get($url->url);
 
         // Check how long it takes to check the URL
-        logger('(UrlChecker) TotalTime: ' . $this->getTotalTime($startTime));
         DB::table('urls')
             ->where('url', $url->url)
             ->update(['requestTime' => $this->getTotalTime($startTime)]);
@@ -38,7 +37,6 @@ class UrlChecker{
 
     public function changeActiveInDB(string $url){
         // Change in DB if Error404 occurs
-        //TODO: refresh the Frontend
         DB::table('urls')
             ->where('url', $url)
             ->update(['active' => 0]);
