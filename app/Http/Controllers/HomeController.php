@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Events\CheckSite;
 use App\Models\Url;
-use App\Services\UrlChecker;
 use Illuminate\Validation\Rule;
 
 

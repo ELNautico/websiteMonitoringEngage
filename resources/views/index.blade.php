@@ -3,11 +3,11 @@
 
     <div class="m-auto max-w-5xl">
         <div class="mt-12 pb-16">
-            <button class="float-left w-2/12 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-3 mt-7 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                <a href="{{ route('url.updateAll') }}">
-                    Refresh All
-                </a>
-            </button>
+            <a href="{{ route('url.updateAll') }}">
+                <button class="float-left w-2/12 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-8 py-3 mt-7 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
+                        Refresh All
+                </button>
+            </a>
             <section class="w-9/12 float-right mr-8">
                 <form method="POST" action="/url">
                     @csrf
@@ -68,9 +68,15 @@
                     <td class="py-4 px-6 text-sm">
                         {{ $url->updated_at->diffForHumans() }}
                     </td>
-                    <td class="py-4 px-6">
-                        {{ $url->requestTime }} sec
-                    </td>
+                    @if($url->requestTime >= 4.9)
+                        <td class="py-4 px-6 text-red-500 font-bold">
+                            >{{ $url->requestTime }} sec
+                        </td>
+                    @else
+                        <td class="py-4 px-6">
+                            {{ $url->requestTime }} sec
+                        </td>
+                    @endif
                     <td class="py-4 px-6">
                         @if($url->active === 1)
                             <span class="inline-flex rounded-full bg-green-100 px-3 py-1 text-s font-semibold leading-5 text-green-800">
@@ -96,11 +102,13 @@
                         </form>
                     </td>
                     <td class="py-4">
+                        <a href="{{ route('url.update', $url->id) }}">
                             <button
                                 class="text-green-400 focus:ring-4 font-medium text-xs py-1 mr-2 "
                             >
-                                <a href="{{ route('url.update', $url->id) }}">Refresh</a>
+                                Refresh
                             </button>
+                        </a>
                     </td>
                 </tr>
             @endforeach
