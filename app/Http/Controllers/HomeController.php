@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Events\CheckSite;
 use App\Models\Url;
 use Illuminate\Validation\Rule;
+use Illuminate\Validation\Validator;
 
 
-class HomeController
+
+class HomeController extends Controller
 {
     public function index()
     {
@@ -19,9 +21,9 @@ class HomeController
     public function store(){
         // validate Request, must be a unique url to avoid doubles
         $attributes = request()?->validate([
-            'url' => ['required', 'url' , Rule::unique('urls', 'url')]
+            'url' => ['required', 'url' , Rule::unique('urls', 'url')],
+            'searchQ' => ['required','string', 'max:255'],
         ]);
-
         $newUrl = Url::create($attributes);
         event(new CheckSite($newUrl));
 
@@ -34,7 +36,6 @@ class HomeController
     }
 
     public function update($id){
-        // For some reason $url = ID of the Url?
         $url = Url::find($id);
         event(new CheckSite($url));
         return redirect('/');

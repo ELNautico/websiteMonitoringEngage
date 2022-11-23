@@ -16,8 +16,10 @@ return new class extends Migration
         Schema::create('urls', function (Blueprint $table) {
             $table->id();
             $table->string('url');
+            $table->string('searchQ');
             $table->decimal('requestTime')->default(0);
             $table->boolean('active')->default(true);
+            $table->boolean('foundQuery')->default(true);
             $table->timestamps();
         });
     }
