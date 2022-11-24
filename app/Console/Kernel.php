@@ -2,6 +2,8 @@
 
 namespace App\Console;
 
+use App\Events\CheckSite;
+use App\Models\Url;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -16,6 +18,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // $schedule->command('inspire')->hourly();
+        //$schedule->call(function (){
+            //$urls = Url::all();
+            //$urls->each(fn($url) => event(new CheckSite($url)));
+            //return redirect('/');
+        //})->everyFiveMinutes();
     }
 
     /**

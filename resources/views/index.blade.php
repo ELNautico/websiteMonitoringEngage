@@ -1,8 +1,8 @@
 <x-layout>
     <h1 class="text-5xl font-extrabold text-center dark:text-white mt-8 mb-12">Website Monitoring EngageMedia</h1>
     <div class="m-auto max-w-5xl">
-        <div class="mt-12 pb-16">
-            <section class="p-6 bg-white border-b mr-16 ml-16">
+        <div class="mt-12 pb-8">
+            <section class="p-6 bg-white border-b mr-16 ml-16 rounded-xl">
                 <form method="POST" action="/url">
                     @csrf
                     <div class="relative">
@@ -27,7 +27,7 @@
                             for="searchQ"
                             class="block mb-2 uppercase font-bold text-xs text-gray-700"
                         >
-                            Text, der auf der Website ist
+                            HTML/Text, der auf der Website ist
                         </label>
                         <input
                             class="block w-full p-4  text-sm text-gray-900 border border-gray-300 rounded-lg bg-white-100 mb-3 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -50,41 +50,72 @@
                 </form>
             </section>
         </div>
-        <table class="mt-5 w-full text-sm text-left text-gray-500 dark:text-gray-400 border border-gray-300">
+        <table class="mt-5 w-full rounded text-sm text-left text-gray-500 dark:text-gray-400 border border-gray-300">
             <thead class="text-xs text-gray-700 uppercase bg-blue-100 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <th scope="col" class="py-3 px-6">
+                <th scope="col" class="py-3 pl-6">
                     Website
                 </th>
                 <th scope="col" class="py-3 px-6">
                     Last Checked
                 </th>
-                <th scope="col" class="py-3 px-6">
-                    Request-Time
+                <th scope="col" class="py-3 px-10">
+                    Response-Time
                 </th>
                 <th scope="col" class="py-3 px-6">
-                    Active&#160;&#160;&#160;Found
+                    Active&#160;&#160;&#160;HTML
                 </th>
-                <th scope="col" class="py-3 px-6"></th>
-                <th scope="col" class="py-3 px-6"></th>
+                <th scope="col" class="py-3 pl-6"></th>
+                <th scope="col" class="py-3 pr-6"></th>
             </tr>
             </thead>
             <tbody>
             @foreach ($urls as $url)
                 <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                    <th scope="row" class="py-4 px-6 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                        {{ $url->url }}
+                    <th scope="row" class="py-4 pl-5 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                        <a href="{{ $url->url }}" target="_blank">
+                            {{ $url->url }}
+                        </a>
                     </th>
                     <td class="py-4 px-6 text-sm">
                         {{ $url->updated_at->diffForHumans() }}
                     </td>
                     @if($url->requestTime >= 4.9)
-                        <td class="py-4 px-6 text-red-500 font-bold">
-                            >{{ $url->requestTime }} sec
+                        <td class="py-4 px-10 text-red-500 font-bold">
+                            <div class="bg-zinc-500 w-12/12">
+                                <div class="bg-red-600 text-right py-3 px-1 text-white"></div>
+                                <div class="text-center">
+                                    > {{ $url->requestTime }} sec
+                                </div>
+                            </div>
                         </td>
                     @else
-                        <td class="py-4 px-6">
-                            {{ $url->requestTime }} sec
+                        <td class="py-4 px-10">
+                            <div class="bg-zinc-500 w-max">
+                                <div @class([
+                                // Set color depending on how long the response time is
+                                'bg-green-500' =>  $url->requestTime <= 2,
+                                'bg-yellow-400' => $url->requestTime >= 2.01 && $url->requestTime <= 3.5,
+                                'bg-amber-600' => $url->requestTime >= 3.51 && $url->requestTime <= 4.9,
+                                'bg-red-600' => $url->requestTime >= 4.91,
+                                // Set width depending on how long the response time is
+                                'w-1/12' =>  $url->requestTime <= 0.1,
+                                'w-2/12' => $url->requestTime >= 0.11 && $url->requestTime <= 0.2,
+                                'w-3/12' => $url->requestTime >= 0.21 && $url->requestTime <= 0.3,
+                                'w-4/12' => $url->requestTime >= 0.31 && $url->requestTime <= 0.5,
+                                'w-5/12' => $url->requestTime >= 0.51 && $url->requestTime <= 0.8,
+                                'w-6/12' => $url->requestTime >= 0.81 && $url->requestTime <= 1.2,
+                                'w-7/12' => $url->requestTime >= 1.2 && $url->requestTime <= 1.7,
+                                'w-8/12' => $url->requestTime >= 1.71 && $url->requestTime <= 2.3,
+                                'w-9/12' => $url->requestTime >= 2.31 && $url->requestTime <= 3,
+                                'w-10/12' => $url->requestTime >= 3.01 && $url->requestTime <= 3.9,
+                                'w-11/12' => $url->requestTime >= 3.91 && $url->requestTime <= 4.89,
+                                'text-right py-3', 'px-1', 'text-white', 'w-8'
+                                ])></div>
+                                <div class="text-center">
+                                    {{ $url->requestTime }} sec
+                                </div>
+                            </div>
                         </td>
                     @endif
                     <td class="py-4 px-6">
@@ -93,7 +124,7 @@
                                     Yes
                             </span>
                         @else
-                            <span class="inline-flex rounded-full bg-red-100 px-3 py-1 text-s font-semibold leading-5 text-red-800">
+                            <span class="inline-flex rounded-full bg-red-100 px-3.5 py-1 text-s font-semibold leading-5 text-red-800">
                                     No
                             </span>
                         @endif
@@ -102,7 +133,7 @@
                                 Yes
                         </span>
                         @else
-                            <span class="inline-flex rounded-full bg-red-100 px-3 py-1 text-s font-semibold leading-5 text-red-800">
+                            <span class="inline-flex rounded-full bg-red-100 px-3.5 py-1 text-s font-semibold leading-5 text-red-800">
                                 No
                         </span>
                         @endif

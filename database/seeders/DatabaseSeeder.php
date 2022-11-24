@@ -22,9 +22,9 @@ class DatabaseSeeder extends Seeder
         //     'email' => 'test@example.com',
         // ]);
 
-        Url::create(['url' => 'https://solartop.staging-server.at']);
-        Url::create(['url' => 'https://www.tlsoft.at/']);
-        Url::create(['url' => 'https://remax.staging-server.at/']);
-        Url::create(['url' => 'https://www.heubach.com/']);
+        //Url::create(['url' => 'https://solartop.staging-server.at']);
+        //Url::create(['url' => 'https://www.tlsoft.at/']);
+        //Url::create(['url' => 'https://remax.staging-server.at/']);
+        //Url::create(['url' => 'https://www.heubach.com/']);
     }
 }
