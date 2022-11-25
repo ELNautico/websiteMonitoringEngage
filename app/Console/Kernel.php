@@ -17,12 +17,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')->hourly();
-        //$schedule->call(function (){
-            //$urls = Url::all();
-            //$urls->each(fn($url) => event(new CheckSite($url)));
-            //return redirect('/');
-        //})->everyFiveMinutes();
+        $schedule->command('update:request')
+            ->everyFiveMinutes()
+            ->withoutOverlapping();
     }
 
     /**
