@@ -18,7 +18,7 @@ class Kernel extends ConsoleKernel
     {
         // Set a schedule so every 5 minutes everything gets updated
         $schedule->command('update:request')
-            ->everyFiveMinutes()
+            ->everyTwoMinutes()
             ->withoutOverlapping();
     }
 
