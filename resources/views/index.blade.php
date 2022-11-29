@@ -4,13 +4,14 @@
         <div class="mt-12 pb-8">
             <section class="p-6 bg-white border-b mr-16 ml-16 rounded-xl">
                 <form method="POST" action="/url">
+                    <!-- Cross-site request forgeries -->
                     @csrf
                     <div class="relative">
                         <label
                             for="url"
                             class="block mb-2 uppercase font-bold text-xs text-gray-700"
                         >
-                            New URL
+                            New URL <span class="text-red-500"> * </span>
                         </label>
                         <input
                             class="block w-full p-4  text-sm text-gray-900 border border-gray-300 rounded-lg bg-white-100 mb-3 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -21,7 +22,7 @@
                             required
                         >
                         @error('url')
-                        <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
+                            <p class="text-red-500 text-xs mt-2">{{ $message }}</p>
                         @enderror
                         <label
                             for="searchQ"
@@ -34,7 +35,7 @@
                             type="text"
                             name="searchQ"
                             id="searchQ"
-                            placeholder="HTML/Text... (Case Sensitive)"
+                            placeholder="HTML/Text..."
                         >
                         @error('searchQ')
                             <p class="text-red-500 text-xs mt-2">The "HTML/Text" field is required</p>
@@ -42,7 +43,7 @@
 
                         <button
                             type="submit"
-                            class="text-white font-medium rounded-lg text-sm px-8 py-3 bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                            class="text-white font-medium rounded-lg text-sm mt-2 px-8 py-3 bg-blue-500 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                         >
                             Add
                         </button>

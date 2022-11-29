@@ -22,20 +22,24 @@ class HomeController extends Controller
             'searchQ' => ['string', 'max:255', 'nullable'],
         ]);
 
+        // create new Url with Attributes
         event(new CheckSite(Url::create($attributes)));
         return redirect('/');
     }
 
+    // Deleting a URL
     public function destroy($id){
         Url::find($id)->delete();
         return redirect('/');
     }
 
+    // Updating a single URL
     public function update($id){
         event(new CheckSite(Url::find($id)));
         return redirect('/');
     }
 
+    // Update all URL's
     public function updateAll(){
         $urls = Url::all();
         $urls->each(fn($url) => event(new CheckSite($url)));
