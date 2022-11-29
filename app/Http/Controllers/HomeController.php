@@ -5,9 +5,6 @@ namespace App\Http\Controllers;
 use App\Events\CheckSite;
 use App\Models\Url;
 use Illuminate\Validation\Rule;
-use Illuminate\Validation\Validator;
-
-
 
 class HomeController extends Controller
 {
@@ -24,9 +21,8 @@ class HomeController extends Controller
             'url' => ['required', 'url' , Rule::unique('urls', 'url')],
             'searchQ' => ['required','string', 'max:255'],
         ]);
-        $newUrl = Url::create($attributes);
-        event(new CheckSite($newUrl));
 
+        event(new CheckSite(Url::create($attributes)));
         return redirect('/');
     }
 
@@ -36,8 +32,7 @@ class HomeController extends Controller
     }
 
     public function update($id){
-        $url = Url::find($id);
-        event(new CheckSite($url));
+        event(new CheckSite(Url::find($id)));
         return redirect('/');
     }
 

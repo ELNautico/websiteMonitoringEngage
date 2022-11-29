@@ -9,30 +9,31 @@ use Throwable;
 
 class UrlChecker{
     public function checkUrlStatus(Url $url){
+        // as soon as the process starts, set start time
         $startTime = microtime(true);
 
         try {
             $response = Http::timeout(5)->get($url->url);
+            // reset Status for every new check
             $this->resetActiveStatus($url->url);
             $this->totalTime($url->url, $startTime);
 
-            $contains = $this->checkIfQueryExists($url);
-
-            if($contains === true){
+            // Does HTML get found? -> set new status
+            if($this->checkIfQueryExists($url) === true){
                 $this->updateOnSuccessQuery($url->url);
             }else{
                 $this->updateOnFailedQuery($url->url);
             }
-            $this->updateLastChecked($url->url);
 
+            $this->updateLastChecked($url->url);
             return $response->ok();
 
         }catch (Throwable $e){
             // If anything fails, set to false.
             $this->updateOnFailedHTTP($url->url);
             $this->updateOnFailedQuery($url->url);
-            logger('Error: ' . $e);
         }
+        return $response->ok();
     }
 
     public function getTotalTime($startTime){
@@ -70,10 +71,9 @@ class UrlChecker{
     }
 
     public function updateLastChecked(string $url){
-        $timestamp = now();
         DB::table('urls')
             ->where('url', $url)
-            ->update(['updated_at' => $timestamp]);
+            ->update(['updated_at' => now()]);
     }
 
     public function totalTime(string $url, $startTime){

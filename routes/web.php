@@ -1,9 +1,7 @@
 <?php
 
 use App\Http\Controllers\HomeController;
-use App\Models\Url;
 use Illuminate\Support\Facades\Route;
-use \App\Events\CheckSite;
 
 /*
 |--------------------------------------------------------------------------

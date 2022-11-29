@@ -30,6 +30,5 @@ class updateRequest extends Command
     {
         $homeController = new HomeController();
         $homeController->updateAll();
-        redirect('/');
     }
 }

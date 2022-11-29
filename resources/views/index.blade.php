@@ -10,7 +10,7 @@
                             for="url"
                             class="block mb-2 uppercase font-bold text-xs text-gray-700"
                         >
-                            Neue URL
+                            New URL
                         </label>
                         <input
                             class="block w-full p-4  text-sm text-gray-900 border border-gray-300 rounded-lg bg-white-100 mb-3 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -27,17 +27,17 @@
                             for="searchQ"
                             class="block mb-2 uppercase font-bold text-xs text-gray-700"
                         >
-                            HTML/Text, der auf der Website ist
+                            HTML/Text on website
                         </label>
                         <input
                             class="block w-full p-4  text-sm text-gray-900 border border-gray-300 rounded-lg bg-white-100 mb-3 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                             type="text"
                             name="searchQ"
                             id="searchQ"
-                            placeholder="Wort/ Satz... (Case Sensitive)"
+                            placeholder="HTML/Text... (Case Sensitive)"
                         >
                         @error('searchQ')
-                        <p class="text-red-500 text-xs mt-2">The "Wort/Satz" field is required</p>
+                        <p class="text-red-500 text-xs mt-2">The "HTML/Text" field is required</p>
                         @enderror
 
                         <button
@@ -52,22 +52,22 @@
         </div>
         <table class="mt-5 w-full rounded text-sm text-left text-gray-500 dark:text-gray-400 border border-gray-300">
             <thead class="text-xs text-gray-700 uppercase bg-blue-100 dark:bg-gray-700 dark:text-gray-400">
-            <tr>
-                <th scope="col" class="py-3 pl-6">
-                    Website
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Last Checked
-                </th>
-                <th scope="col" class="py-3 px-10">
-                    Response-Time
-                </th>
-                <th scope="col" class="py-3 px-6">
-                    Active&#160;&#160;&#160;HTML
-                </th>
-                <th scope="col" class="py-3 pl-6"></th>
-                <th scope="col" class="py-3 pr-6"></th>
-            </tr>
+                <tr>
+                    <th scope="col" class="py-3 pl-6">
+                        Website
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Last Checked
+                    </th>
+                    <th scope="col" class="py-3 px-10">
+                        Response-Time
+                    </th>
+                    <th scope="col" class="py-3 px-6">
+                        Active&#160;&#160;&#160;HTML
+                    </th>
+                    <th scope="col" class="py-3 pl-6"></th>
+                    <th scope="col" class="py-3 pr-6"></th>
+                </tr>
             </thead>
             <tbody>
             @foreach ($urls as $url)
@@ -131,11 +131,11 @@
                         @if($url->foundQuery === 1)
                             <span class="inline-flex rounded-full bg-green-100 px-3 py-1 text-s font-semibold leading-5 text-green-800">
                                 Yes
-                        </span>
+                            </span>
                         @else
                             <span class="inline-flex rounded-full bg-red-100 px-3.5 py-1 text-s font-semibold leading-5 text-red-800">
                                 No
-                        </span>
+                            </span>
                         @endif
                     </td>
                     <td class="py-4">
@@ -171,5 +171,4 @@
             </button>
         </a>
     </div>
-
 </x-layout>

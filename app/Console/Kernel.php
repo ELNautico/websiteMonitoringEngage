@@ -2,8 +2,6 @@
 
 namespace App\Console;
 
-use App\Events\CheckSite;
-use App\Models\Url;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
