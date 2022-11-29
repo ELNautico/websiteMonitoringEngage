@@ -26,7 +26,6 @@ class CheckUrlListener implements ShouldQueue
      */
     public function handle(CheckSite $event)
     {
-        logger('(CheckUrlListener) URL: ' . $event->url->url);
         $this->urlChecker->checkUrlStatus($event->url);
     }
 }

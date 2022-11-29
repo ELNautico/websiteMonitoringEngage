@@ -19,7 +19,7 @@ class HomeController extends Controller
         // validate Request, must be a unique url to avoid doubles
         $attributes = request()?->validate([
             'url' => ['required', 'url' , Rule::unique('urls', 'url')],
-            'searchQ' => ['required','string', 'max:255'],
+            'searchQ' => ['string', 'max:255', 'nullable'],
         ]);
 
         event(new CheckSite(Url::create($attributes)));

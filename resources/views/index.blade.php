@@ -37,7 +37,7 @@
                             placeholder="HTML/Text... (Case Sensitive)"
                         >
                         @error('searchQ')
-                        <p class="text-red-500 text-xs mt-2">The "HTML/Text" field is required</p>
+                            <p class="text-red-500 text-xs mt-2">The "HTML/Text" field is required</p>
                         @enderror
 
                         <button
@@ -128,15 +128,23 @@
                                     No
                             </span>
                         @endif
-                        @if($url->foundQuery === 1)
-                            <span class="inline-flex rounded-full bg-green-100 px-3 py-1 text-s font-semibold leading-5 text-green-800">
-                                Yes
-                            </span>
+
+                        @if($url->searchQ !== '')
+                                @if($url->foundQuery === 1)
+                                    <span class="inline-flex rounded-full bg-green-100 px-3 py-1 text-s font-semibold leading-5 text-green-800">
+                                        Yes
+                                    </span>
+                                @else
+                                    <span class="inline-flex rounded-full bg-red-100 px-3.5 py-1 text-s font-semibold leading-5 text-red-800">
+                                        No
+                                    </span>
+                                @endif
                         @else
-                            <span class="inline-flex rounded-full bg-red-100 px-3.5 py-1 text-s font-semibold leading-5 text-red-800">
-                                No
+                            <span class="inline-flex rounded-full bg-yellow-100 px-3.5 py-1 text-s font-semibold leading-5 text-red-800">
+                                ---
                             </span>
                         @endif
+
                     </td>
                     <td class="py-4">
                         <form method="POST" action="{{ route('url.delete', $url->id) }}">
