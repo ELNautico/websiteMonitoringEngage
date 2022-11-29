@@ -2,7 +2,6 @@
 
 <title>Website Monitoring</title>
 <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-
 <style>
     html {
         scroll-behavior: smooth;

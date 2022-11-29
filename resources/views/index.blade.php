@@ -180,3 +180,12 @@
         </a>
     </div>
 </x-layout>
+
+<script>
+    //reload window every 30 seconds unless user is typing
+    setInterval(function (){
+        if(document.getElementById('url').value === '' && document.getElementById('searchQ').value === ''){
+            document.location.reload();
+        }
+    }, 15000);
+</script>

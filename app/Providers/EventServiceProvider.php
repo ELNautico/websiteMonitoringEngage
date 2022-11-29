@@ -3,12 +3,14 @@
 namespace App\Providers;
 
 use App\Events\CheckSite;
+use App\Events\ReloadPage;
 use App\Listeners\CheckUrlListener;
 use App\Services\UrlChecker;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Event;
+use App\Listeners\ReloadPageListener;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -23,7 +25,10 @@ class EventServiceProvider extends ServiceProvider
         ],
         CheckSite::class =>[
             CheckUrlListener::class
-        ]
+        ],
+        ReloadPage::class => [
+            ReloadPageListener::class,
+        ],
     ];
 
     /**
