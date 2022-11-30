@@ -8,6 +8,6 @@
     }
 </style>
 
-<body {{ $attributes(['class' => 'bg-gray-100 content-center']) }}>
+<body {{ $attributes(['class' => 'bg-gray-800 content-center']) }}>
 {{ $slot }}
 </body>
