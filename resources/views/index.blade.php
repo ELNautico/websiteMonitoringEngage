@@ -133,7 +133,7 @@
                                     Yes
                             </span>
                             @else
-                                <span class="inline-flex rounded-full bg-red-500 px-3.5 py-1 text-s font-semibold leading-5 text-red-900">
+                                <span class="inline-flex rounded-full bg-red-500 px-3.5 py-1 text-s leading-5 text-red-900">
                                     No
                             </span>
                             @endif
