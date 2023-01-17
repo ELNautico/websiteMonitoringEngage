@@ -14,7 +14,7 @@
                             New URL <span class="text-red-500"> * </span>
                         </label>
                         <input
-                            class="block w-full p-4 max-w-4xl text-sm text-gray-900 rounded-lg bg-gray-800 mb-3"
+                            class="block w-full p-4 max-w-4xl text-sm text-white rounded-lg bg-gray-800 mb-3"
                             type="text"
                             name="url"
                             id="url"
@@ -31,7 +31,7 @@
                             HTML/Text on website
                         </label>
                         <input
-                            class="block w-full p-4 max-w-4xl text-sm text-gray-900 rounded-lg bg-gray-800 mb-3"
+                            class="block w-full p-4 max-w-4xl text-sm text-white rounded-lg bg-gray-800 mb-3"
                             type="text"
                             name="searchQ"
                             id="searchQ"
@@ -80,10 +80,10 @@
                     @else
                     <tr class="bg-gray-700">
                     @endif
-                        <th scope="row" class="py-4 pl-5 font-medium text-white whitespace-nowrap">
+                        <th scope="row" class="py-4 pl-3 font-medium text-white whitespace-nowrap">
                             <a href="{{ $url->url }}" target="_blank">
                                 <!-- Don't display the first 8 characters, which are https:// -->
-                                {{ substr($url->url, 8)}}
+                                {{ Str::limit(substr($url->url, 8), 50) }}
                             </a>
                         </th>
                         <td class="py-4 px-6 text-sm text-gray-400">
