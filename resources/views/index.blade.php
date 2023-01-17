@@ -83,7 +83,6 @@
                         <th scope="row" class="py-4 pl-3 font-medium text-white whitespace-nowrap">
                             <a href="{{ $url->url }}" target="_blank">
                                 <!-- Don't display the first 8 characters, which are https:// -->
-                                {{ Str::limit(substr($url->url, 8), 50) }}
                             </a>
                         </th>
                         <td class="py-4 px-6 text-sm text-gray-400">
