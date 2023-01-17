@@ -1,0 +1,14 @@
+version: '3'
+services:
+    db:
+        image: mysql
+        restart: always
+        environment:
+            MYSQL_DATABASE: ${DB_DATABASE}
+            MYSQL_USER: ${DB_USERNAME}
+            MYSQL_PASSWORD:
+        ports:
+            - "3306"
+    php:
+        image: php:8.1-fpm
+
