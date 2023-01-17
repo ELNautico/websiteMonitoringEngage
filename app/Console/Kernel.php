@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         // Set a schedule so every 2 minutes everything gets updated.
+        // Start with ./vendor/bin/sail artisan schedule:work
         $schedule->command('update:request')
             ->everyTwoMinutes()
             ->withoutOverlapping();
